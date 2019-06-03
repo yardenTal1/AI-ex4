@@ -38,17 +38,20 @@ class ValueIterationAgent(ValueEstimationAgent):
         self.iterations = iterations
         self.values = util.Counter()  # A Counter is a dict with default 0
         for i in range(iterations):
+            new_values = util.Counter()  # A Counter is a dict with default 0
             for state in mdp.getStates():
                 max_value = -math.inf
+                if not mdp.getPossibleActions(state):
+                    new_values[state] = 0
+                    continue
                 for action in mdp.getPossibleActions(state):
-                    print([state_prob[1] * (
-                        self.mdp.getReward(state, action, state_prob[0]) + self.discount * self.values[state_prob[0]])
-                           for state_prob in self.mdp.getTransitionStatesAndProbs(state, action)])
                     val = sum([state_prob[1] * (
-                        self.mdp.getReward(state, action, state_prob[0]) + self.discount * self.values[state_prob[0]])
-                               for state_prob in self.mdp.getTransitionStatesAndProbs(state, action)])
+                        self.mdp.getReward(state, action, state_prob[0]) + self.discount * self.values[state_prob[0]]) for
+                               state_prob in self.mdp.getTransitionStatesAndProbs(state, action)])
                     max_value = max(max_value, val)
-                self.values[state] = max_value
+                new_values[state] = max_value
+            self.values = new_values.copy()
+
 
     def getValue(self, state):
         """
