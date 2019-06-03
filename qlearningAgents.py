@@ -67,7 +67,6 @@ class QLearningAgent(ReinforcementAgent):
         """
         max_value = self.getValue(state)
         actions_for_val = []
-        print(self.getLegalActions(state))
         for action in self.getLegalActions(state):
             if self.getQValue(state, action) == max_value:
                 actions_for_val.append(action)
