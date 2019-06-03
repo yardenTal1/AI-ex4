@@ -73,7 +73,6 @@ class QLearningAgent(ReinforcementAgent):
                 max_action = action
         return max_action
 
-
     def getAction(self, state):
         """
           Compute the action to take in the current state.  With
@@ -102,8 +101,8 @@ class QLearningAgent(ReinforcementAgent):
           NOTE: You should never call this function,
           it will be called on your behalf
         """
-        return self.getQValue(state, action) + self.alpha * (reward + self.discount * self.getValue(nextState) - self.getQValue(state, action))
-
+        self.q_values[(state, action)] = self.getQValue(state, action) + self.alpha * (
+            reward + self.discount * self.getValue(nextState) - self.getQValue(state, action))
 
 
 class PacmanQAgent(QLearningAgent):
