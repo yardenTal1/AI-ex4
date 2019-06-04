@@ -79,14 +79,14 @@ class ValueIterationAgent(ValueEstimationAgent):
           there are no legal actions, which is the case at the
           terminal state, you should return None.
         """
-        # TODO add reward to calculate of the policy
+        # TODO add reward and discount to calculate of the policy
         actions = self.mdp.getPossibleActions(state)
         if not actions:
             return None
         best_act = None
         best_act_val = -math.inf
         for act in actions:
-            cur_sum = sum([state_prob[1] * (self.values[state_prob[0]] + self.mdp.getReward(state, act, state_prob[0]))
+            cur_sum = sum([state_prob[1] * ((self.discount * self.values[state_prob[0]]) + self.mdp.getReward(state, act, state_prob[0]))
                            for state_prob in self.mdp.getTransitionStatesAndProbs(state, act)])
             if cur_sum > best_act_val:
                 best_act = act
