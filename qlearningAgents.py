@@ -167,9 +167,7 @@ class ApproximateQAgent(PacmanQAgent):
            Should update your weights based on transition
         """
         correction = reward + self.discount*self.getValue(nextState) - self.getQValue(state, action)
-        for name,weight in self.featExtractor.getFeatures(state, action):
-            print('name',name)
-            print('val',weight)
+        for name, weight in self.featExtractor.getFeatures(state, action).items():
             self.weights[name] += self.alpha * correction * weight
 
     def final(self, state):
