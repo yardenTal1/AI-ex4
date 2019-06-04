@@ -12,11 +12,11 @@
 
 # Change these default values to obtain the specified policies through
 # value iteration.
-# TODO compare answers
 def question2():
   answerDiscount = 0.9
   answerNoise = 0
   return answerDiscount, answerNoise
+
 
 def question3a():
   answerDiscount = 0.1
@@ -24,9 +24,12 @@ def question3a():
   answerLivingReward = 0.0
   return answerDiscount, answerNoise, answerLivingReward
   # If not possible, return 'NOT POSSIBLE'
-
+# TODO compare answers  -  we do we choose to go up - up or right has the same value
 def question3b():
-  return 'NOT POSSIBLE'
+  answerDiscount = 0.1
+  answerNoise = 0.1
+  answerLivingReward = 0.5
+  return answerDiscount, answerNoise, answerLivingReward
   # If not possible, return 'NOT POSSIBLE'
 
 def question3c():
@@ -45,16 +48,16 @@ def question3d():
 def question3e():
   answerDiscount = 0.9
   answerNoise = 0.2
-  answerLivingReward = 100.0
+  answerLivingReward = 10.0
   return answerDiscount, answerNoise, answerLivingReward
 
-
+# TODO - Omer did nothing - verify it with someone else
 def question6():
   answerEpsilon = None
   answerLearningRate = None
   return 'NOT POSSIBLE'
   # If not possible, return 'NOT POSSIBLE'
-  
+
 if __name__ == '__main__':
   print('Answers to analysis questions:')
   import analysis
